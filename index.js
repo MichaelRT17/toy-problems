@@ -162,3 +162,55 @@ var moveZeros = function (arr) {
 // Below should return [true, 5, "hello", 6, 3, "z", 0, 0, 0]
 
 moveZeros([true, 0, 5, "hello", 0, 6, 3, 0, "z"])
+
+
+// The main idea is to count all the occuring characters(UTF-8) in string. 
+// If you have string like this aba then the result should be { 'a': 2, 'b': 1 }
+
+// What if the string is empty ? Then the result should be empty object literal { }
+
+function count (string) {  
+    let obj = {};
+    for(let i = 0; i < string.length; i++) {
+      if(obj[string[i]]) {
+        obj[string[i]] = obj[string[i]] + 1;
+      }
+      else {
+        obj[string[i]] = 1;
+      }
+    }
+    return obj;
+  }
+
+// Below should return { 'a': 5, 'd': 2, 'q': 1 }
+
+count('adqaaaad')
+
+
+// Move the first letter of each word to the end of it, then add "ay" to the end of the word. 
+// Leave punctuation marks untouched.
+
+// Examples
+// pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+// pigIt('Hello world !');     // elloHay orldway !
+
+function pigIt(str){
+    let newS = [];
+    var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+    str.split(' ').forEach(val => {
+      if(!pattern.test(val)) {
+        let first = val.split('').shift();
+        let string = val.slice(1).concat(first, 'ay');
+        newS.push(string);
+      } else {
+        newS.push(val)
+      }
+    })
+    return newS.join(' ')
+}
+
+// Another solution: pigIt = s => s.split(' ').map(e => e.substr(1) + e[0] + 'ay').join(' ');
+
+// Below should return "iHay omMay !"
+
+pigIt('Hi Mom !')
