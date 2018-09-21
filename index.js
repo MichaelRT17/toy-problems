@@ -214,3 +214,38 @@ function pigIt(str){
 // Below should return "iHay omMay !"
 
 pigIt('Hi Mom !')
+
+
+// Write a function called that takes a string of parentheses, and determines if the order of the parentheses is valid. 
+// The function should return true if the string is valid, and false if it's invalid.
+
+// Examples
+// "()"              =>  true
+// ")(()))"          =>  false
+// "("               =>  false
+// "(())((()())())"  =>  true
+
+function validParentheses(parens) {
+    let one = 0;
+    let two = 0;
+    let x = parens.split('');
+    for(let i = 0; i < x.length; i++) {
+        if(two > one) {
+            return false;
+        }
+        else if(x[i] === '(') {
+            one++
+        }
+        else if(x[i] === ')') {
+            two++
+        }
+    }
+    if(one === two) {
+        return true
+    }
+    return false
+}
+
+// Below should return false
+
+validParentheses('(()()((()))')
